@@ -22,7 +22,7 @@ const StudentList = () => {
                 { no: "7", name: "Mustafa" },
                 { no: "3", name: "Mehmet" }
             ];
-            dispatch(bulkInsertStudentsAction(newStudents))
+            dispatch(bulkInsertStudentsAction(newStudents));
         }, 1000);
     }
 

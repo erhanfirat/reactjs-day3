@@ -5,6 +5,8 @@ import GreetingsClass from './components/class/GreetingsClass';
 import CounterFunction from './components/function/CounterFunction';
 import GreetingsFunction from './components/function/GreetingsFunction';
 import StudentList from './components/function/StudentList/StudentList';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -66,6 +68,7 @@ class App extends React.Component {
         <myComponents.Counter {...CounterProps} className={showCounter ? 'hide' : ''} />
         <hr />
         <myComponents.StudentList />
+        <ToastContainer />
       </div>
     );
   }

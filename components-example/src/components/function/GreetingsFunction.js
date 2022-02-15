@@ -17,8 +17,7 @@ const GreetingsFunction = (props) => {
 
     return <div style={greetingsStyle}>
         <label htmlFor='userNameInput'>Your name: </label>
-        <input id="userNameInput" type="text" ref={inputRef}
-            value={name} onChange={(e) => setName(e.target.value)} />
+        <input id="userNameInput" type="text" ref={inputRef} />
         <h1>Merhaba {name}</h1>
     </div>
 }

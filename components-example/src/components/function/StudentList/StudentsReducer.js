@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 
 const checkAndAddStudent = (students, newStudent) => {
     let exist = false;
@@ -9,6 +11,10 @@ const checkAndAddStudent = (students, newStudent) => {
     if (!exist) {
         students.push(newStudent);
         students.sort((a, b) => a.name > b.name ? 1 : -1);
+    }
+    else {
+        throw new Error("You cannot add a student already exist!");
+        toast.error("You cannot add a student already exist!");
     }
     return students;
 }

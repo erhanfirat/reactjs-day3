@@ -24,7 +24,6 @@ const StudentForm = ({ saveStudent, closeForm }) => {
                     <Form.Control type="text" placeholder="Enter student name" value={name} onChange={(e) => setName(e.target.value)} />
                 </Form.Group>
 
-
                 <Button type='submit' disabled={!name || !no} className="me-2">Save</Button>
                 <Button type='button' onClick={closeForm} >Cancel</Button>
             </Form>
