@@ -11,7 +11,6 @@ const StudentList = () => {
     const loadStudents = () => {
         setLoading(true);
         setTimeout(() => {
-            setLoading(false);
             const newStudents = [
                 { no: "1", name: "Ahmet" },
                 { no: "2", name: "Veli" },
@@ -23,12 +22,10 @@ const StudentList = () => {
                 { no: "3", name: "Mehmet" }
             ];
             dispatch(bulkInsertStudentsAction(newStudents));
+            setLoading(false);
         }, 1000);
     }
 
-    useEffect(() => {
-        console.log("studentsState > ", studentsState);
-    }, [studentsState]);
 
     const saveStudentHandler = ({ name, no }) => {
         dispatch(addNewStudentAction({ name, no }));

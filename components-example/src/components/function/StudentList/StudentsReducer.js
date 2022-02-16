@@ -13,8 +13,7 @@ const checkAndAddStudent = (students, newStudent) => {
         students.sort((a, b) => a.name > b.name ? 1 : -1);
     }
     else {
-        throw new Error("You cannot add a student already exist!");
-        toast.error("You cannot add a student already exist!");
+        toast.error("You cannot add a student already exist! " + newStudent.no + " - " + newStudent.name);
     }
     return students;
 }
@@ -28,7 +27,7 @@ const studentReducer = (state, action) => {
 
             return { students: newStudents, count: students.length };
         case "bulkInsert":
-            action.students.map(student => {
+            action.students.forEach(student => {
                 newStudents = checkAndAddStudent(newStudents, student);
             })
             return { students: newStudents, count: students.length };

@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
 import CounterClass from './components/class/CounterClass';
 import GreetingsClass from './components/class/GreetingsClass';
-import CounterFunction from './components/function/CounterFunction';
+
 import GreetingsFunction from './components/function/GreetingsFunction';
-import StudentList from './components/function/StudentList/StudentList';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+
+const StudentList = React.lazy(() => import('./components/function/StudentList/StudentList'));
+const CounterFunction = React.lazy(() => import('./components/function/CounterFunction'));
 
 class App extends React.Component {
   constructor(props) {
@@ -56,20 +63,19 @@ class App extends React.Component {
     const { myComponents } = this.state;
 
     return (
-      <div className="App">
-        <button onClick={() => this.toggleComponentType()}>Toggle Component Type</button>
-        {/* <GreetingsClass name={userName} /> */}
-        <myComponents.Greetings></myComponents.Greetings>
-        <hr />
-        <button onClick={() => this.toggleCounter()}>Toggle Counter</button>
-        <p>showCounter: {showCounter ? "true" : "false"}</p>
-
-        {/* {showCounter && <CounterClass time={500} />} */}
-        <myComponents.Counter {...CounterProps} className={showCounter ? 'hide' : ''} />
-        <hr />
-        <myComponents.StudentList />
-        <ToastContainer />
-      </div>
+      <Router>
+        <div className="App">
+          <myComponents.Greetings></myComponents.Greetings>
+          <hr />
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Routes>
+              <Route path="/counter" element={<CounterFunction {...CounterProps} />} />
+              <Route path="/students" element={<StudentList />} />
+            </Routes>
+          </Suspense>
+          <ToastContainer />
+        </div>
+      </Router>
     );
   }
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Button } from 'react-bootstrap';
 
 const CounterFunction = ({ time = 1000, increment = 10, className }) => {
     const [counter, setCounter] = useState(0);
@@ -27,15 +28,12 @@ const CounterFunction = ({ time = 1000, increment = 10, className }) => {
     }, [counter])
 
     const resetCounter = (e) => {
-        console.log("button click event >", e);
         setCounter(0);
     }
 
     return <div className={className}>
         <p>Counter: {counter}</p>
-        <button onClick={() => setCounter(0)}>Reset</button>
-        <button onClick={resetCounter}>Reset</button>
-
+        <Button onClick={resetCounter}>Reset</Button>
     </div>
 }
 
